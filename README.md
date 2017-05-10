@@ -1,2 +1,2 @@
-# clase
-Proyectos de clases
+# clases
+Repositorio donde subo proyectos de clases.

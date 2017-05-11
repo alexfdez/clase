@@ -1,0 +1,70 @@
+clear
+
+
+function suma () {
+	echo `expr $1 + $2`
+}
+
+function resta () {
+	echo `expr $1 - $2`
+}
+
+function multiplicacion () {
+	echo `expr $1 \* $2`
+}
+
+function division () {
+	echo `expr $1 / $2`
+}
+
+
+echo Introduce dos números por teclado:
+read n1 n2
+op=0
+
+
+while [ $op != 6 ]
+do
+	echo #$1, #$2
+	echo -e "\nMenú"
+	echo 1.- Suma
+	echo 2.- Resta
+	echo 3.- Multiplicación
+	echo 4.- División
+	echo 5.- Volver a introducir los números
+	echo 6.- Salir del menú
+
+	echo -e "\nIntroduce la opción:"
+	read op
+	case $op in
+	
+	1)
+		result=$(suma $n1 $n2)
+					;;
+	2)
+		result=$(resta $n1 $n2)
+					;;
+	3)
+		result=$(multiplicacion $n1 $n2)
+					;;
+	4)
+		result=$(division $n1 $n2)
+					;;
+	5)
+		clear
+		echo Vuelve a introducir los dos números:
+		read n1 n2
+					;;
+	esac
+	
+	if (( $op < 5 )) && (( $op > 0 ))
+	then
+		echo -e "Resultado = $result\n"
+	elif (( $op != 6 ))
+	then
+		echo -e "Opción inválida.\n"
+	fi
+done
+
+
+clear

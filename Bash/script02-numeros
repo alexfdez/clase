@@ -1,0 +1,7 @@
+clear
+
+function suma () {
+	`expr $1 + $2`
+}
+
+echo $(suma (1, 2))

@@ -1,0 +1,47 @@
+clear
+
+
+echo Introduce el número para hacer el sumatorio hasta el mismo:
+read numero
+
+
+echo -e "\n-----Bucle for-----"
+
+suma=0
+
+for i in $(seq 1 1 $numero)
+do
+	suma=`expr $suma + $i`
+done
+
+echo Sumatorio de $numero: $suma
+
+
+
+echo -e "\n-----Bucle while-----"
+
+suma=0
+i=1
+
+while (( $i <= $numero ))
+do
+	suma=`expr $suma + $i`
+	i=`expr $i + 1`
+done
+
+echo Sumatorio de $numero: $suma
+
+
+
+echo -e "\n-----Bucle until-----"
+
+suma=0
+i=1
+
+until (( $i > $numero ))
+do
+	suma=`expr $suma + $i`
+	i=`expr $i + 1`
+done
+
+echo -e "Sumatorio de $numero: $suma \n"

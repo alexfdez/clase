@@ -1,0 +1,54 @@
+clear
+
+
+echo Introduce 3 números:
+read n1 n2 n3
+
+
+if (( $n1 >= $n2 )) && (( $n1 >= $n3 ))
+then
+	mayor=$n1
+
+	if (( $n2 > $n3 ))
+	then
+		medio=$n2
+		menor=$n3
+	else
+		medio=$n3
+		menor=$n2
+	fi	
+
+elif (( $n2 >= $n1 )) && (( $n2 >= $n3 ))
+then
+	mayor=$n2
+
+	if (( $n1 > $n3 ))
+	then
+		medio=$n1
+		menor=$n3
+	else
+		medio=$n3
+		menor=$n1
+	fi
+
+elif (( $n3 >= $n1 )) && (( $n3 >= $n2 ))
+then
+	mayor=$n3
+
+	if (( $n1 > $n2 ))
+	then
+		medio=$n1
+		menor=$n2
+	else
+		medio=$n2
+		menor=$n1
+	fi
+fi
+
+
+if (( $n1 == $n2 )) && (( $n2 == $n3 )) && (( $n1 == $n3 ))
+then
+	echo Los números son iguales
+else
+	echo Números ordenados de mayor a menor: $mayor $medio $menor
+fi

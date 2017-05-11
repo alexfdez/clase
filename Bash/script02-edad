@@ -1,0 +1,24 @@
+clear
+
+echo Introduce la edad y el nombre:
+read edad nombre
+
+if (( $edad <= 12 ))
+then
+	echo $nombre es niñ@
+
+elif (( $edad <= 18 ))
+then
+	echo $nombre es adolescente
+
+elif (( $edad < 30 ))
+then
+	echo $nombre es joven
+
+elif (( $edad < 65 ))
+then
+	echo $nombre es adult@
+
+else
+	echo $nombre es viej@
+fi

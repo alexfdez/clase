@@ -1,0 +1,6 @@
+clear
+
+echo Introduce la palabra para escribirla del revés:
+read palabra
+
+echo $palabra|rev

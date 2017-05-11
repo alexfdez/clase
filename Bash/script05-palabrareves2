@@ -3,11 +3,12 @@ clear
 echo Introduce la palabra para escribirla del revés:
 read palabra
 
-length=`expr ${#palabra} - 1`
+length=$(echo -n $palabra | wc -m)
+length=`expr $length - 1`
 
 for i in $(seq $length -1 0)
 do
-	inverso="$inverso${palabra:$i:1}"
+	inverso=$inverso${palabra:$i:1}
 done
 
 echo -e "$inverso\n"

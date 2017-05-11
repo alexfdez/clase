@@ -1,0 +1,72 @@
+clear
+op=0
+
+while (( op != 6 ))
+do
+	echo ~~~ Menú ~~~
+	echo 1. Crear registro
+	echo 2. Mostrar listín
+	echo 3. Buscar teléfono
+	echo 4. Borrar registro
+	echo 5. Borrar listín completo
+	echo 6. Salir
+	read op
+
+	case $op in
+	1)
+		echo # Línea vacía
+		echo Introducir nombre:
+		read nombre
+		echo Introducir teléfono:
+		read telefono
+		echo -e "" >> listin.txt
+		echo Nombre: $nombre >> listin.txt
+		echo Teléfono: $telefono >> listin.txt
+		echo -e "\nRegistro creado.\n"
+	;;
+
+	2)
+		echo -e "\n------------------------------------"
+		cat listin.txt
+		echo -e "\n------------------------------------\n"
+	;;
+
+	3)
+		echo # Línea vacía
+		echo Introduce el número a buscar:
+		read telefono
+
+		if grep -q "Teléfono: $telefono$" listin.txt
+		then
+			echo -e "\nEl número existe.\n"
+		else
+			echo -e "\nNo se ha encontrado el número\n"
+		fi
+	;;
+
+	4)
+		echo -e "\nNombre a borrar:"
+		read nombre
+		echo -e "\nTeléfono a borrar:"
+		read telefono
+		grep -v "^Nombre: $nombre$" listin.txt > temp
+		grep -v "^Teléfono: $telefono$" temp > temp2
+		rm listin.txt temp && mv temp2 listin.txt
+		echo -e "\nRegistro borrado.\n"
+	;;
+
+	5)
+		rm listin.txt
+		echo -e "\nListín vacío.\n"
+	;;
+
+	6)
+		clear
+	;;
+
+	*)
+		echo Esta operación no existe.
+	;;
+	esac
+
+done

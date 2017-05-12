@@ -1,7 +1,5 @@
 package B1;
 
-import C1.LibLeer;
-
 public class Ejercicios {
 	
 	private static final double PI = 3.1416;

@@ -14,7 +14,7 @@ public class LibLeer {
      * @param mensaje Mensaje que aparece en pantalla antes de introducir el valor
      * @return caracter - El caracter introducido
      */
-    public static char caracter(String mensaje) {
+    protected static char caracter(String mensaje) {
         Scanner teclado = new Scanner(System.in);
         String  cadena;
         char    caracter;
@@ -34,7 +34,7 @@ public class LibLeer {
      * @param mensaje Mensaje que aparece en pantalla antes de introducir el valor
      * @return cadena - El string introducido
      */
-    public static String cadena(String mensaje) {
+    protected static String cadena(String mensaje) {
         Scanner teclado = new Scanner(System.in);
         String  cadena;
         
@@ -52,7 +52,7 @@ public class LibLeer {
      * @param mensaje Mensaje que aparece en pantalla antes de introducir el valor
      * @return entero - El entero introducido
      */
-    public static int entero(String mensaje) {
+    protected static int entero(String mensaje) {
         Scanner teclado = new Scanner(System.in);
         String  cadena;
         int     entero = 0;
@@ -82,7 +82,7 @@ public class LibLeer {
      * @param mensaje Mensaje que aparece en pantalla antes de introducir el valor
      * @return nLong - El entero grande introducido
      */
-    public static long longg(String mensaje) {
+    protected static long longg(String mensaje) {
         Scanner teclado = new Scanner(System.in);
         String  cadena;
         long    nLong = 0;
@@ -112,7 +112,7 @@ public class LibLeer {
      * @param mensaje Mensaje que aparece en pantalla antes de introducir el valor
      * @return numero - El número decimal (float) introducido
      */
-    public static float floatt(String mensaje) {
+    protected static float floatt(String mensaje) {
         Scanner teclado = new Scanner(System.in);
         String  cadena;
         float   numero = 0;
@@ -142,7 +142,7 @@ public class LibLeer {
      * @param mensaje Mensaje que aparece en pantalla antes de introducir el valor
      * @return real - El número decimal (double) introducido
      */
-    public static double real(String mensaje) {
+    protected static double real(String mensaje) {
         Scanner teclado = new Scanner(System.in);
         String  cadena;
         double  real = 0;

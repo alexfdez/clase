@@ -11,15 +11,22 @@ public class test {
 		ResultSet rs = null;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "ALUMNADODB", "alumnado");
 			// con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE", "usuario", "password");
 			stmt = con.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM alum");
 			
-			// Cuenta el nÃºmero mÃ¡ximo de columnas
+			// Cuenta el número máximo de columnas
 			ResultSetMetaData meta = rs.getMetaData();
 			int maxColumn = meta.getColumnCount();
 			
+			// Muestra el nombre de las columnas
+			for (int i = 1; i <= maxColumn; i++) {
+				System.out.print(meta.getColumnName(i) + "\t");
+			}
+			System.out.println("\n-------------------------");
+			
+			// Imprime las columnas
 			while(rs.next()) {
 				for (int i = 1; i <= maxColumn; i++) {
 					System.out.print(rs.getString(i) + "\t");

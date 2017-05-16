@@ -29,26 +29,33 @@ public class Ejercicio07 {
 				ruta = new File(directorio);
 			}
 			
+			// Ruta absoluta del archivo completo
 			File rutaFinal = new File(ruta.getAbsolutePath() + File.separator + nuevoArchivo.getName());
 			
+			// Para escribir el archivo
 			FileWriter archivoW = new FileWriter(rutaFinal);
 			BufferedWriter bufferW = new BufferedWriter(archivoW);
 			
+			// Petición a la tabla EMPLE
 			String sql = "SELECT * FROM emple ORDER BY DEPT_NO";
 			rs = stmt.executeQuery(sql);
 			meta = rs.getMetaData();
 			maxColumn = meta.getColumnCount();
 			
+			// Petición a la tabla DEPART
 			sql = "SELECT * FROM depart";
 			rs2 = stmt2.executeQuery(sql);
 			meta2 = rs2.getMetaData();
 			maxColumn2 = meta2.getColumnCount();
 			
-			int totalDept = 0;
-			int totalEmpresa = 0;
+			// Suma del total del departamento y empresa
+			double totalDept = 0;
+			double totalEmpresa = 0;
+			// Departamento actual y departamento del empleado
 			int esteDept;
 			int empleDept;
 			
+			// índices
 			int i = 1;
 			int j = 1;
 			
@@ -67,7 +74,7 @@ public class Ejercicio07 {
 					}
 					
 					cadena += "Nº Empleado: " + rs.getString(j) + "\tNombre: " + rs.getString(j+1) + "\nOficio: " + rs.getString(j+2) + "\t\tSalario: " + rs.getString(j+5) + "\t\tTotal: " + rs.getString(j+7) + "\n\n";
-					totalDept += Integer.parseInt(rs.getString(j+7));
+					totalDept += Double.parseDouble(rs.getString(j+7));
 					
 				}
 				
@@ -78,13 +85,15 @@ public class Ejercicio07 {
 			
 			cadena += "Suma Total Empresa: " + totalEmpresa;
 			
-			System.out.println(cadena);
+			if (!rutaFinal.exists()) {
+				rutaFinal.createNewFile();
+			}
 			
 			bufferW.write(cadena);
 			bufferW.flush();
 			bufferW.close();
 			
-			System.out.println("Escritura completada en directorio:\n" + rutaFinal.getAbsolutePath());
+			System.out.println("\nEscritura completada en directorio:\n" + rutaFinal.getAbsolutePath() + "\n");
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -98,7 +107,7 @@ public class Ejercicio07 {
 		String apellido = LibLeer.cadena("\nApellido: ").toUpperCase();
 		String oficio = LibLeer.cadena("Oficio: ").toUpperCase();
 		int dir = LibLeer.entero("Directorio: ");
-		int salario = LibLeer.entero("Salario (€): ");
+		double salario = LibLeer.entero("Salario (€): ");
 		int dept = LibLeer.entero("Número de departamento: ");
 		
 		// Obtener nuevo EMP_NO
@@ -114,6 +123,7 @@ public class Ejercicio07 {
 		}
 		int id = Integer.parseInt(idStr) + 1;
 		
+		// Insertar valores en la tabla EMPLE
 		sql = "INSERT INTO emple (EMP_NO,APELLIDO,OFICIO,DIR,FECHA_ALT,SALARIO,COMISION,TOTAL,DEPT_NO) VALUES (" + id + ",'" + apellido + "','" + oficio + "'," + dir + ",(SELECT to_char(trunc(sysdate),'dd/mm/yyyy') FROM dual)," + salario + ",0," + salario + "," + dept + ")";
 		rs = stmt.executeQuery(sql);
 		
@@ -137,7 +147,7 @@ public class Ejercicio07 {
 			op = LibLeer.entero("> ");
 			
 			if (op == 1) {
-				int salarioNuevo = LibLeer.entero("\nIntroduce el nuevo salario: ");
+				double salarioNuevo = LibLeer.real("\nIntroduce el nuevo salario: ");
 				String sql = "UPDATE emple SET SALARIO = " + salarioNuevo + " WHERE emp_no = " + id;
 				rs = stmt.executeQuery(sql);
 				System.out.println("\nSalario actualizado.");
@@ -146,7 +156,7 @@ public class Ejercicio07 {
 				rs = stmt.executeQuery(sql);
 			}
 			else if (op == 2) {
-				int comisionNueva = LibLeer.entero("\nIntroduce la nueva comisión: ");
+				double comisionNueva = LibLeer.real("\nIntroduce la nueva comisión: ");
 				String sql = "UPDATE emple SET COMISION = " + comisionNueva + " WHERE emp_no = " + id;
 				rs = stmt.executeQuery(sql);
 				System.out.println("\nComisión actualizada.");
@@ -191,7 +201,7 @@ public class Ejercicio07 {
 	}
 	
 	
-	public static void eliminarEmpleado(String dept) throws SQLException {
+	public static void eliminarEmpleadosDepartamento(String dept) throws SQLException {
 		String sql = "DELETE FROM emple WHERE dept_no IN (SELECT dept_no FROM depart WHERE dnombre = '" + dept + "')";
 		rs = stmt.executeQuery(sql);
 	}
@@ -199,7 +209,7 @@ public class Ejercicio07 {
 	
 	public static void eliminarDepartamento() throws SQLException {
 		String dept = LibLeer.cadena("\nEscribe el nombre del departamento: ").toUpperCase();
-		eliminarEmpleado(dept);
+		eliminarEmpleadosDepartamento(dept);
 		
 		String sql = "DELETE FROM depart WHERE dnombre = '" + dept + "'";
 		rs = stmt.executeQuery(sql);
@@ -242,11 +252,12 @@ public class Ejercicio07 {
 				System.out.println("");
 			} while (op != 6);
 			
-			
-			if (rs != null) rs.close();
+			if (con != null) con.close();
 			if (stmt != null) stmt.close();
 			if (stmt2 != null) stmt2.close();
-			if (con != null) con.close();
+			if (rs != null) rs.close();
+			if (rs2 != null) rs2.close();
+			
 			System.out.println("¡Hasta luego!");
 			
 		} catch (ClassNotFoundException e) {

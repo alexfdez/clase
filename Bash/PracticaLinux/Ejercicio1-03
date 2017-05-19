@@ -1,0 +1,9 @@
+clear
+
+echo Nombre de un animal:
+read variable1
+
+echo Número de patas que tiene:
+read variable2
+
+echo $variable1 tiene $variable2 patas

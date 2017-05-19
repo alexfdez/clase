@@ -1,0 +1,16 @@
+clear
+
+echo Introduzca un número:
+read variable1
+
+echo Introduzca otro número:
+read variable2
+
+echo Introduzca otro número:
+read variable3
+
+resultado=`expr $variable1 + $variable2 + $variable3`
+echo La suma de $variable1 + $variable2 + $variable3 es: $resultado
+
+resultado=`expr $variable1 \* $variable2 \* $variable3`
+echo El producto de $variable1 x $variable2 x $variable3 es: $resultado

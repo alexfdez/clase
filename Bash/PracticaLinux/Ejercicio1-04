@@ -1,0 +1,21 @@
+clear
+
+echo Introduce un número:
+read variable1
+
+echo Introduce otro número:
+read variable2
+
+echo Los números son $variable1 y $variable2
+
+resultado=`expr $variable1 \* $variable2`
+echo El producto es: $resultado
+
+resultado=`expr $variable1 + $variable2`
+echo La suma es: $resultado
+
+resultado=`expr $variable1 - $variable2`
+echo La resta es: $resultado
+
+resultado=`expr $variable1 / $variable2`
+echo La división es: $resultado

@@ -1,0 +1,32 @@
+clear
+
+echo Introduce 4 nombres diferentes, separados por espacios:
+read nombre1 nombre2 nombre3 nombre4
+
+echo Email, teléfono y provincia de nacimiento de $nombre1, separado por espacios:
+read email1 telefono1 provincia1
+
+echo Email, teléfono y provincia de nacimiento de $nombre2, separado por espacios:
+read email2 telefono2 provincia2
+
+echo Email, teléfono y provincia de nacimiento de $nombre3, separado por espacios:
+read email3 telefono3 provincia3
+
+echo Email, teléfono y provincia de nacimiento de $nombre4, separado por espacios:
+read email4 telefono4 provincia4
+
+echo El email de mi amigo $nombre1 es: $email1
+echo El teléfono de $nombre1 es: $telefono1
+echo $nombre1 nació en $provincia1
+
+echo El email de mi amigo $nombre2 es: $email2
+echo El teléfono de $nombre2 es: $telefono2
+echo $nombre2 nació en $provincia2
+
+echo El email de mi amigo $nombre3 es: $email3
+echo El teléfono de $nombre3 es: $telefono3
+echo $nombre3 nació en $provincia3
+
+echo El email de mi amigo $nombre4 es: $email4
+echo El teléfono de $nombre4 es: $telefono4
+echo $nombre4 nació en $provincia4

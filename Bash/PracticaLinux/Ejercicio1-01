@@ -1,0 +1,12 @@
+clear
+
+echo Por favor, introduzca su nombre:
+read variable1
+
+echo Por favor, introduzca su dirección de correo:
+read variable2
+
+echo Por favor, introduzca su edad:
+read variable3
+
+echo $variable1 tiene $variable3 años y su correo electrónico es: $variable2

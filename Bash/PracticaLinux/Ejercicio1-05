@@ -1,0 +1,16 @@
+clear
+
+echo Introduce el nombre de un equipo de fútbol:
+read equipo1
+
+echo Introduce el nombre de otro equipo de fútbol:
+read equipo2
+
+echo ¿Cuántos goles ha marcado $equipo1?
+read goles1
+
+echo ¿Cuántos goles ha marcado $equipo2?
+read goles2
+
+echo Partido: $equipo1-$equipo2 Resultado: $goles1-$goles2
+echo Partido: Sevilla-Betis Resultado: 4-0

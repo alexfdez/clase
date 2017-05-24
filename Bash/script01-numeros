@@ -17,13 +17,17 @@ function division () {
 	echo `expr $1 / $2`
 }
 
+function elevar () {
+	echo $[$1**$2]
+}
+
 
 echo Introduce dos números por teclado:
 read n1 n2
 op=0
 
 
-while [ $op != 6 ]
+while [ $op != 7 ]
 do
 	echo #$1, #$2
 	echo -e "\nMenú"
@@ -31,8 +35,9 @@ do
 	echo 2.- Resta
 	echo 3.- Multiplicación
 	echo 4.- División
-	echo 5.- Volver a introducir los números
-	echo 6.- Salir del menú
+	echo 5.- Elevar primer número al segundo
+	echo 6.- Volver a introducir los números
+	echo 7.- Salir del menú
 
 	echo -e "\nIntroduce la opción:"
 	read op
@@ -51,16 +56,19 @@ do
 		result=$(division $n1 $n2)
 					;;
 	5)
+		result=$(elevar $n1 $n2)
+					;;
+	6)
 		clear
 		echo Vuelve a introducir los dos números:
 		read n1 n2
 					;;
 	esac
 	
-	if (( $op < 5 )) && (( $op > 0 ))
+	if (( $op < 6 )) && (( $op > 0 ))
 	then
 		echo -e "Resultado = $result\n"
-	elif (( $op != 6 ))
+	elif (( $op != 7 ))
 	then
 		echo -e "Opción inválida.\n"
 	fi
